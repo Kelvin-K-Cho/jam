@@ -2,7 +2,7 @@ const mongoose = require(`mongoose`);
 const Schema = mongoose.Schema;
 
 // Create Schema
-const AuthSchema = new Schema({
+const UserSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -16,8 +16,7 @@ const AuthSchema = new Schema({
     required: true
   },
   avatar: {
-    type: String,
-    required: true
+    type: String
   },
   date: {
     type: Date,
@@ -25,4 +24,4 @@ const AuthSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model(`auth`, AuthSchema);
+module.exports = mongoose.model(`user`, UserSchema);

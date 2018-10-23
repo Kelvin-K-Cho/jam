@@ -1,15 +1,24 @@
 const express = require(`express`);
 const mongoose = require(`mongoose`);
+const bodyParser = require(`body-parser`);
 
 
-const auth = require(`./routes/api/auth`);
+const users = require(`./routes/api/users`);
 const profiles = require(`./routes/api/profiles`);
 const comments = require(`./routes/api/comments`);
 
 
 const app = express();
-const db = require(`./config/keys`).mongoURI;
 
+//Body parser middleware
+app.use( bodyParser.urlencoded({
+    extended: false
+  })
+);
+app.use( bodyParser.json() );
+
+// DB Config
+const db = require(`./config/keys`).mongoURI;
 
 mongoose
   .connect(db, { useNewUrlParser: true })
@@ -22,7 +31,7 @@ app.get(`/`, (req, res) => {
 
 
 // Use Routes
-app.use(`/api/auth`, auth);
+app.use(`/api/users`, users);
 app.use(`/api/profiles`, profiles);
 app.use(`/api/comments`, comments);
 
